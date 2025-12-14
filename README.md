@@ -20,9 +20,12 @@ The CLI tool parses the specified Python file.
 It dynamically generates corresponding C++ source code.
 The resulting executable is placed in the output directory.
 ### Changelog
-- **Version 0.0.1 (Initial Release)**
+- ***Version 0.0.1 (Initial Release)***
 - **Added: Initial support for simple string literal conversion using the print() statement syntax (e.g., print("Hello World")).**
 - **Added: Basic command-line interface for invoking the compiler executable (CarbonPy.exe).**
+  
+- ***Version 0.0.2***
+- **Added os.system() Support**
 
 ### Supported Libraries
 - OS
