@@ -23,3 +23,10 @@ The resulting executable is placed in the output directory.
 - **Version 0.0.1 (Initial Release)**
 - **Added: Initial support for simple string literal conversion using the print() statement syntax (e.g., print("Hello World")).**
 - **Added: Basic command-line interface for invoking the compiler executable (CarbonPy.exe).**
+
+### Supported Libraries
+- OS
+
+### Special Edits
+***For CarbonPY to work you must change some things, so here is a list on how to make CarbonPY generate correct code.***
+- ***```os.system("") -> os.system() (No Quotes)```***
