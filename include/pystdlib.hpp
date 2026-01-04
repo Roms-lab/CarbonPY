@@ -14,7 +14,12 @@ std::string Generate_Cpp_Print_Code(const std::string& content_to_print) {
 }
 
 std::string Generate_Cpp_OS_Code(const std::string& command_to_execute) {
-    std::string cpp_code = "system(\"" + command_to_execute + "\");";
+    std::string cpp_code = "system(" + command_to_execute + ");";
+    return cpp_code;
+}
+
+std::string Generate_Cpp_Time_Code(const std::string& time_to_wait) {
+    std::string cpp_code = "std::this_thread::sleep_for(std::chrono::seconds(" + time_to_wait + "));";
     return cpp_code;
 }
 
@@ -33,6 +38,15 @@ bool includesos(const std::string& input_string) {
     const std::string os_prefix = "os.system(";
 
     if (input_string.find(os_prefix) == 0) {
+        return true;
+    }
+    return false;
+}
+
+bool includestime(const std::string& input_time) {
+    const std::string time_prefix = "time.sleep(";
+
+    if (input_time.find(time_prefix) == 0) {
         return true;
     }
     return false;
