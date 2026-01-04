@@ -32,7 +32,8 @@ The resulting executable is placed in the output directory.
 - **Fixed Forced Removal of quotes in os.system()**
 
 ### Supported Libraries
-- OS
+- OS ****Partial***
+- Time
 
 ### Special Edits
 ***For CarbonPY to work you must change some things, so here is a list on how to make CarbonPY generate correct code.***
