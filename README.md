@@ -32,7 +32,7 @@ The resulting executable is placed in the output directory.
 - **Fixed Forced Removal of quotes in os.system()**
 
 ### Supported Libraries
-- OS ****Partial***
+- OS ***Partial***
 - Time
 
 ### Special Edits
