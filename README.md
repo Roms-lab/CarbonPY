@@ -32,4 +32,5 @@ The resulting executable is placed in the output directory.
 
 ### Special Edits
 ***For CarbonPY to work you must change some things, so here is a list on how to make CarbonPY generate correct code.***
-- ***```os.system("") -> os.system() (No Quotes)```***
+- ***```All imports must NOT be renamed, or used as a wildcard```***
+- ***```Time Lib MUST be time.sleep() or the compiler will throw an error.```***
