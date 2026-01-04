@@ -27,6 +27,10 @@ The resulting executable is placed in the output directory.
 - ***Version 0.0.2***
 - **Added os.system() Support**
 
+- ***Version 0.0.3***
+- **Added time.sleep() Support**
+- **Fixed Forced Removal of quotes in os.system()**
+
 ### Supported Libraries
 - OS
 
