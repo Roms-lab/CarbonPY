@@ -26,13 +26,18 @@ bool startsWithOSSystem(const std::string& input_string) {
     return input_string.find(os_prefix) == 0;
 }
 
+bool startsWithTime(const std::string& input_time) {
+    const std::string time_prefix = "time.sleep(";
+    return input_time.find(time_prefix) == 0;
+}
+
 
 // Function to start the compilation process (The updated logic)
 void compile_python_source(const std::string& source_code) {
     std::cout << "Starting compilation of Python source code..." << std::endl;
 
     output_cpp_file.open("generated_output.cpp");
-    if (!output_cpp_file.is_open()) {
+    if (!output_cpp_file.is_open()) { 
         std::cerr << "Error: Could not open output file for writing C++ code." << std::endl;
         return;
     }
@@ -40,6 +45,7 @@ void compile_python_source(const std::string& source_code) {
     // Use this set to track necessary imports
     std::vector<std::string> required_headers = { "#include <iostream>", "#include <string>" };
     bool os_lib_required = false; // Flag to see if we need <cstdlib>
+    bool time_lib_required = false; // Flag to see if we need <thread>, <chrono>
 
     output_cpp_file << "int main() {\n"; // Start a simple main function
 
@@ -77,6 +83,17 @@ void compile_python_source(const std::string& source_code) {
                 cpp_line = Generate_Cpp_OS_Code(command_args);
             }
         }
+        else if (startsWithTime(line)) {
+            time_lib_required = true; // Set flag that we need <thread>, <chrono>
+            size_t start_pos = line.find("(") + 1;
+            size_t end_pos = line.rfind(")");
+            if (end_pos > start_pos) {
+                std::string command_args = line.substr(start_pos, end_pos - start_pos);
+                // Use the OS code generator
+                // NOTE: We assume command_args is a single string literal already in Python code, e.g., "ls -l"
+                cpp_line = Generate_Cpp_Time_Code(command_args);
+            }
+        }
 
         // Write the generated line to the output file if we generated anything
         if (!cpp_line.empty()) {
@@ -93,6 +110,10 @@ void compile_python_source(const std::string& source_code) {
     // but for this structure, we have to reopen and prepend the file content.
     if (os_lib_required) {
         required_headers.push_back("#include <cstdlib>");
+    }
+    if (time_lib_required) {
+        required_headers.push_back("#include <thread>");
+        required_headers.push_back("#include <chrono>");
     }
 
     // Read the generated content we just wrote
