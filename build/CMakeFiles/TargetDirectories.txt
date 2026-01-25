@@ -1,0 +1,3 @@
+/workspaces/CarbonPY/build/CMakeFiles/CarbonPY.dir
+/workspaces/CarbonPY/build/CMakeFiles/edit_cache.dir
+/workspaces/CarbonPY/build/CMakeFiles/rebuild_cache.dir

@@ -31,7 +31,6 @@ bool startsWithTime(const std::string& input_time) {
     return input_time.find(time_prefix) == 0;
 }
 
-
 // Function to start the compilation process (The updated logic)
 void compile_python_source(const std::string& source_code) {
     std::cout << "Starting compilation of Python source code..." << std::endl;
@@ -93,6 +92,10 @@ void compile_python_source(const std::string& source_code) {
                 // NOTE: We assume command_args is a single string literal already in Python code, e.g., "ls -l"
                 cpp_line = Generate_Cpp_Time_Code(command_args);
             }
+        }
+        if (includesint(line)) {
+            // Converts "h = 5" -> "int h = 5;"
+            cpp_line = Generate_Cpp_Int_Code(line);
         }
 
         // Write the generated line to the output file if we generated anything
